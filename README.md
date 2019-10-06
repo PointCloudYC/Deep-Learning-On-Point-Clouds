@@ -1,5 +1,5 @@
 # Deep-Learning-On-Point-Clouds
-A curated list of **key papers** on *applying deep learning on point cloud data*. Moreover, I will try write a review on these papers from a rookie's perpective so that I can have a strong mastery of apply deep learning on point cloud data.
+A curated list of **key papers** on *applying deep learning on point cloud data*. More importantly, I will try to summarize on these papers with a note. Each note will try to summarize the basic background, main proposals, key components of the proposals, achitecture, code implementation, methodology part, potential use of the paper and etc.
 
 ## Papers
 ### Charles QI, Su HAO, Leo Guibas(Stanford University)
@@ -20,10 +20,15 @@ A curated list of **key papers** on *applying deep learning on point cloud data*
 ### Other
 - PointCNN
 - SPLATNet
+- So-Net
 - DGCNN
+- OCnet
 - 3d-sis
 - 3d-sic
 - scan2cad
 - PointRCNN
 - GSPN
 
+### Todos
+- notes for each key paper
+- add links to each paper
