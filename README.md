@@ -22,7 +22,7 @@ A curated list of **key papers** on *applying deep learning on point cloud data*
 - SPLATNet
 - So-Net
 - DGCNN
-- OCnet
+- OctNet
 - 3d-sis
 - 3d-sic
 - scan2cad
@@ -32,3 +32,6 @@ A curated list of **key papers** on *applying deep learning on point cloud data*
 ### Todos
 - notes for each key paper
 - add links to each paper
+### newest classic papers
+4D Spatio-Temporal ConvNets: Minkowski Convolutional Neural Networks, ScanNet No.1 on the leatherboard(26th,sep,19)
+3D Semantic Segmentation with Submanifold Sparse Convolutional Networks and Submanifold Sparse Convolutional Networks, ScanNet No.2 on the leatherboard(26th,sep,19)
