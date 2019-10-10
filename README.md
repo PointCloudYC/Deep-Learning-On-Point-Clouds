@@ -1,6 +1,8 @@
 # Deep-Learning-On-Point-Clouds
 A curated list of **key papers** on *applying deep learning on point cloud data*. More importantly, I will try to summarize on these papers with a note. Each note will try to summarize the basic background, main proposals, key components of the proposals, achitecture, code implementation, methodology part, potential use of the paper and etc.
 
+P.S.: notes will be mostly written using my own words and conform the principles of high readability.
+
 ## Papers
 ### Charles QI, Su HAO, Leo Guibas(Stanford University)
 - PointNet
@@ -28,10 +30,19 @@ A curated list of **key papers** on *applying deep learning on point cloud data*
 - scan2cad
 - PointRCNN
 - GSPN
+- Tangent Conv
+- PCN(point completion net)
 
-### Todos
-- notes for each key paper
-- add links to each paper
 ### newest classic papers
+
 4D Spatio-Temporal ConvNets: Minkowski Convolutional Neural Networks, ScanNet No.1 on the leatherboard(26th,sep,19)
 3D Semantic Segmentation with Submanifold Sparse Convolutional Networks and Submanifold Sparse Convolutional Networks, ScanNet No.2 on the leatherboard(26th,sep,19)
+
+## Todos
+
+- notes for each key paper
+  - pointnet
+  - pointnet++
+  - votenet
+  - pointcnn
+- add links to each paper
