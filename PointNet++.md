@@ -1,0 +1,1 @@
+PointNet++: recursively applying pointnet on the metric space, settling the issue that pointnet does not capture the local context. it tries to address the challenge of non-uniform sampling density in common 3d scans and design new layers to adapt to varying sampling densities.
