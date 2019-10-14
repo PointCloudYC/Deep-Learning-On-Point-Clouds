@@ -1,6 +1,6 @@
 # summary of PointNet
 
-this a **pioneering and key** paper on applying deep learning(DL) on point clouds since it **firstly opens doors to novel 3d-centric approaches to 3D scene understanding** with the perspertive of DL. The proposed net named PointNet enables feature learning directly on point cloud data. Surprisingly, most of the later papers in this area since 2017 are largely influenced by it and many of them even design new nets directly based on the pointnet, for example, Charles Qi's later papers including PointNet++, F-PointNet, VoteNet.
+this is a **pioneering and key** paper on applying deep learning(DL) on point clouds since it **firstly opens doors to novel 3d-centric approaches to 3D scene understanding** with the perspertive of DL. The proposed net named PointNet enables feature learning directly on point cloud data. Surprisingly, most of the later papers in this area since 2017 are largely influenced by it and many of them even design new nets directly based on the pointnet, for example, Charles Qi's later papers including PointNet++, F-PointNet, VoteNet.
 
 ## background
 
@@ -32,26 +32,33 @@ There are mainly 3 key modules inclduing max pooling module, conctenation struct
 
 - architecture;
 ![architecture of pointnet](images/pointnet/architecture-pointnet.png)
-
- 
-
+  - max pooling;
   - T-Net;
   - concatenation of local and global info;
   - Tensor shape envolvement in 4d format(for verification, you can visualize it in tensorboard); 
   
   - The architecture has lots of similarities with typical convolutional NNs but it **has a special preference for point/depth convolution** namely 2d convolution with 1x1 kernels; ( *TODO: 2d conv mainly abstract features across space, while 2d conv w. 1x1 kernels abstract features across channels. Check the intuition of point conv from `Network in network` and `Xception` paper*)
 
+## results
+omitted, check the paper.
+
 ## [optional] methodology
 
 ## results
-
 omitted, check the paper.
 
+## conclusion
+
+- PointNet is a novel deep neural network that directly consumes point cloud, respecting permutation and geometric invariances of the points, while being light-weight and robust to various data corruptions.
+
+- It provides **a unified approach** to a number of 3D recognition tasks including object classification, part segmentation and semantic segmentation.
+
 ## code analysis
+###
 
 ## critiques and comments
 
-## FAQ
+## Research questions
 
 ### Among all popular geometric data structures, why point cloud data is favored?
 
@@ -76,7 +83,7 @@ PointNet smartly uses a symmetry function(Pointnet(vanilla)) to realize;
 -  In PointNet, the author exquistitely construct a symmetry function named PointNet(vanilla) which is composed of MLP, max-pooling and another MLP. Specially, each point in the input will use MLP to be convolved into a high-dimensional point, then pooling is adopted over all points to obtain a global descriptor. finally, use another MLP to digest the global descriptor to perform classifification task. **Obviously, the permutation invariance can be achieved when using a pooling operation.**
 ![pointnet-vanilla](images/pointnet/pointnet-vannila.png)
 
-## how the PointNet(vanilla) is designed?
+### how the PointNet(vanilla) is designed?
 
 ![pointnet-vanilla](images/pointnet/pointnet-vannila.png)
 
@@ -92,6 +99,21 @@ above img is the pontnet(vannila) structure.
   - 4)PointNet vanilla is just a special case of the symmetric function set;you can use a therem to prove that the point vanilla can approximate any functions.
 ![](images/pointnet/theory-pointnet.png)
 
+
+### how to respect the data tranformation invariance?
+
+use the STN(spatial tranformer network)/T-Net；
+![](images/pointnet/t-net-1.png)
+![](images/pointnet/t-net-2.png)
+
+### why pointnet is so robust to data corruption incluiding data insertions and outliers?
+
+- pointnet learns to pick perceptually interesting/critical pts.
+![](images/pointnet/robustness-1.png)
+
+- critical pts are those which activate the neuro j in the max pooling process. P.S： the visualization is based on an examples.
+![](images/pointnet/robustness-2.png)
+
 ## ideas
 
 - can I propose a special net tailored for the seg ?
@@ -99,6 +121,6 @@ above img is the pontnet(vannila) structure.
 
 ## references
 
-PointNet
-PointNet++
-Charles QI's Ph.D. thesis
+- PointNet
+- PointNet++
+- Charles QI's Ph.D. thesis.
