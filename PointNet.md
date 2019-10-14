@@ -54,7 +54,190 @@ omitted, check the paper.
 - It provides **a unified approach** to a number of 3D recognition tasks including object classification, part segmentation and semantic segmentation.
 
 ## code analysis
-###
+
+code structure is:
+![](images/pointnet/code-structure.png)
+
+- `data`, stores the benchmark datasets.
+- `doc`
+- `log`, stores classification logs including training log, tensorboard events, checkpoints
+- `models`, stores models for 3 tasks(classi, part seg, and semantic seg)
+- `part_seg`, stores training and test files for part seg.
+- `sem_seg`, stores training and test files for part seg.
+- `utils`, utility files for this project.
+- `train.py`, training file for classification task.
+- `evaluate.py`, evaluation file for classification task
+- `provider.py`, for preprocessing inputs and handle i/o for h5 format data.
+
+### quick use for ModelNet40, ShapeNet and S3DIS
+
+### classification analysis
+1.related files(root mean root folder)
+root/train.py, 
+root/evaluate.py, 
+root/models/pointnet_cls.py,root/models/pointnet_cls_basic.py
+
+2.model: `pointnet_cls.py`. Note: `pointnet_cls_basic.py` does not add T-NET to ensure rigid tranformation invariance.
+
+- input(Batch * Height * Width) and output(Batch)
+```
+# X(Batch-Height-Width-Channel,eg: 32*1024*3*1), y(Batch-Label,eg: 32*40)
+def placeholder_inputs(batch_size, num_point):
+    pointclouds_pl = tf.placeholder(tf.float32, shape=(batch_size, num_point, 3))
+    labels_pl = tf.placeholder(tf.int32, shape=(batch_size))
+    return pointclouds_pl, labels_pl
+```
+
+- classification achitecture code;
+  >Symmetric function: max pooling
+KEY PART: after the CNN, we get the redundant info for each point(N*1024),Using pooling(max,avg) we can hopefully obtain the intesrsting pts(salient representations--global discriptor) which proves to correspond to the skeleton of the shape. Also,here we can find the limitation of pointnent framework which does not capture local context/structure net = tf_util.max_pool2d(net, [num_point,1],..)
+
+```
+def get_model(point_cloud, is_training, bn_decay=None):
+    """ Classification PointNet, input is BxNx3, output Bx40 """
+    batch_size = point_cloud.get_shape()[0].value
+    num_point = point_cloud.get_shape()[1].value
+    end_points = {} # store the tranformation matrix
+
+
+    # input tranf. for ensuring the tranformation invariance
+    with tf.variable_scope('transform_net1') as sc:
+        transform = input_transform_net(point_cloud, is_training, bn_decay, K=3)
+    point_cloud_transformed = tf.matmul(point_cloud, transform)
+    input_image = tf.expand_dims(point_cloud_transformed, -1) #4d tensor
+
+    net = tf_util.conv2d(input_image, 64, [1,3],
+                         padding='VALID', stride=[1,1],
+                         bn=True, is_training=is_training,
+                         scope='conv1', bn_decay=bn_decay)                                                    
+    net = tf_util.conv2d(net, 64, [1,1],
+                         padding='VALID', stride=[1,1],
+                         bn=True, is_training=is_training,
+                         scope='conv2', bn_decay=bn_decay)
+
+    # feature tranf. for ensuring the tranformation invariance
+    with tf.variable_scope('transform_net2') as sc:
+        transform = feature_transform_net(net, is_training, bn_decay, K=64)
+    end_points['transform'] = transform
+    net_transformed = tf.matmul(tf.squeeze(net, axis=[2]), transform)
+    net_transformed = tf.expand_dims(net_transformed, [2])
+
+    net = tf_util.conv2d(net_transformed, 64, [1,1],
+                         padding='VALID', stride=[1,1],
+                         bn=True, is_training=is_training,
+                         scope='conv3', bn_decay=bn_decay)
+    net = tf_util.conv2d(net, 128, [1,1],
+                         padding='VALID', stride=[1,1],
+                         bn=True, is_training=is_training,
+                         scope='conv4', bn_decay=bn_decay)
+    net = tf_util.conv2d(net, 1024, [1,1],
+                         padding='VALID', stride=[1,1],
+                         bn=True, is_training=is_training,
+                         scope='conv5', bn_decay=bn_decay)
+
+    # Symmetric function: max pooling
+    # KEY PART: after the CNN, we get the redundant info for each point(N*1024)
+    # Using pooling(max,avg) we can hopefully obtain the intesrsting pts(salient representations--global discriptor) which proves to correspond to the skeleton of the shape.
+    # Also,here we can find the limitation of pointnent framework which does not capture local context/structure
+    net = tf_util.max_pool2d(net, [num_point,1],
+                             padding='VALID', scope='maxpool') # Bx1x1x1024
+
+                             
+    net = tf.reshape(net, [batch_size, -1]) # Bx1024
+    net = tf_util.fully_connected(net, 512, bn=True, is_training=is_training,
+                                  scope='fc1', bn_decay=bn_decay)
+    net = tf_util.dropout(net, keep_prob=0.7, is_training=is_training,
+                          scope='dp1')
+    net = tf_util.fully_connected(net, 256, bn=True, is_training=is_training,
+                                  scope='fc2', bn_decay=bn_decay)
+    net = tf_util.dropout(net, keep_prob=0.7, is_training=is_training,
+                          scope='dp2')
+    net = tf_util.fully_connected(net, 40, activation_fn=None, scope='fc3')
+
+    return net, end_points
+```
+
+- loss/objective function; joint loss, pay attention to the softmax cross entropy type. Check the comment in the code.
+
+```
+def get_loss(pred, label, end_points, reg_weight=0.001):
+    """ pred: B*NUM_CLASSES, the one-hot encoding format
+        label: B, not the one-hot encoding format, label is 0 to K-1 --yc
+        So use the sparse_softmax_cross_entropy_with_logits, for details check:
+        https://stackoverflow.com/questions/37312421/whats-the-difference-between-sparse-softmax-cross-entropy-with-logits-and-softm
+    """
+    
+    # loss shape 32*1
+    # cross-entropy vs softmax cross-entropy,check a good blog: https://gombru.github.io/2018/05/23/cross_entropy_loss/
+    loss = tf.nn.sparse_softmax_cross_entropy_with_logits(logits=pred, labels=label)
+    classify_loss = tf.reduce_mean(loss)
+    tf.summary.scalar('classify loss', classify_loss)
+
+    # Add a regularization term to the training loss w.r.t feature transf.
+    # Enforce the transformation as orthogonal matrix
+    transform = end_points['transform'] # BxKxK
+    K = transform.get_shape()[1].value
+    mat_diff = tf.matmul(transform, tf.transpose(transform, perm=[0,2,1]))
+    mat_diff -= tf.constant(np.eye(K), dtype=tf.float32)
+    mat_diff_loss = tf.nn.l2_loss(mat_diff) 
+    tf.summary.scalar('mat loss', mat_diff_loss)
+
+    return classify_loss + mat_diff_loss * reg_weight
+```
+
+3.train.py;
+
+- create argparse object and config its settings for our training, including epochs,learning rates, etc.
+
+- train function;below is the my understanding in pseudo code.
+```pseudo-code
+On the default graph
+    on the GPU
+        get the training set(X,y) in placeholder, construct the computation graph,namely relate pred,loss,train_op(min cost fucntion) with X,y
+        add scalars(loss,bn_decay,...) to tf.summary 
+    set the config, and create a session
+    init the varaibles
+    get all tf summaries(`merged` var)
+    create train/test writer to write to file
+
+    for epochs
+        for batches
+            train one epoch: load training set, learn from the mini-batch data, namely,backprop, compute grads, update the weights and biases
+            eval one epoch: load test set, evaluate on test set
+        save the model every 10 times.
+```
+
+4.evaluate.py; used for predicting new data, most of the code is similar to train.py but no learning for weights and biases since no backprop is executed when `session run method` does not involve `optimizer` variable,e.g: adam optimizer which is named `ops['train_op']`.
+
+### FAQ
+
+- how tensorboard is used in this project?
+
+- what are the eval metrics for classification and segmentation tasks?
+
+- how to prepare your own datasets?
+
+- how the blocks in segmentation input data are generated?
+
+
+- why normalized location is added to form as a 9-dim input in segmentation task?
+
+
+
+### semantic segmentation(S3DIS)
+**have much in common with classification tasks.**
+
+- model.py is the segmentation model file, similar to classification model but with feature concatenation and more MLP for segmentation.
+![](images/pointnet/code-sem_seg.png)
+
+- `train.py`'s ideas are similar to above classi model.
+
+- `batch_inference.py` to pred test set.
+
+- `eval_iou_accuracy.py` to compute mean IoU metric.
+
+- if preparing your own datasets, remember to use `collect_indoor3d_data.py` to generate npy and `gen_indoor3d_h5.py` to h5 files for your own datasets.
+
 
 ## critiques and comments
 
@@ -124,3 +307,6 @@ use the STN(spatial tranformer network)/T-Net；
 - PointNet
 - PointNet++
 - Charles QI's Ph.D. thesis.
+
+code
+[pointnet tensorflow](https://github.com/charlesq34/pointnet) | [pointnet pytorch](https://github.com/fxia22/pointnet.pytorch) | [pointnet keras](https://github.com/garyli1019/pointnet-keras)
