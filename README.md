@@ -36,6 +36,7 @@ P.S.: notes will be mostly written using my own words and conform the principles
 - [GSPN (CVPR 2019)](https://github.com/ericyi/GSPN)
 - [Tangent Convolutions (CVPR 2018)](https://github.com/tatarchm/tangent_conv)
 - [PCN (3DV 2018 (Oral))](https://github.com/wentaoyuan/pcn)
+- [3DMatch (CVPR 2017 Oral)](https://github.com/andyzeng/3dmatch-toolbox)
 
 ### newest classic papers
 
