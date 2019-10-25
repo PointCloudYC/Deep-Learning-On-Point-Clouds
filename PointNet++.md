@@ -51,6 +51,9 @@ PointNet++ leverages neighouborhood at multiple scales to achieve both robustnes
   - point feature propagation/upsampling for segmentation task; For semantic segmentation, point features for all the original points should be obtained, but after several set abstraction levels(SAs), we have less points than original points but with higher features. So how to overcome this? Due to the computation cost, **propagating features from subsampled points to the orignal points** is favored rather than sampling all points as centroid points in all SAs. Specifically, the inputs is N_lX(d+C2) and N_(l-1)x(d+C1);1)interpolation;the SA l-1 points is linked directely to the output(N_(l-1)x(d+C1)) but w.o C2 feature info, here **inverse distance weighted average based on KNN** is used to compute the C2 features w.r.t SA N_l points.(check the formula).  2)concatenation; then concatenate SA N_(l-1) points(N_(l-1)x(d+C1)) with newly computed features(N_(l-1)x(C2)), we can get the ouput(N_(l-1)x(d+C1+C2)). 3)unit pointnet;similar to point convolutions(1x1 conv in cnn). 4)repeat this process until propogating features to the original set of points.
 
 
+## code analysis
+
+
 ## FAQ
 
 ### metric space
@@ -61,4 +64,17 @@ metric space means a small space within a radius, e.g: 0.5m along a point in euc
 
 Although the local receptive fields of 3d cnn scan the space w. fixed strides, in pointnet++ they are dependent on both input and the metric, thus are more efficient.
 
-### 
+## metrics
+
+## visualization
+
+
+## refs
+[PointNet++ paper](https://arxiv.org/abs/1706.02413)
+[PointNet++ Charles Qi's code](https://github.com/charlesq34/pointnet2)
+
+code and other reviews
+* [从PointNet到PointNet++理论及pytorch代码 - 小执着的博客 - CSDN博客](https://blog.csdn.net/weixin_39373480/article/details/88878629#commentBox)
+* [PointNet++的pytorch实现代码阅读 - 小执着的博客 - CSDN博客](https://blog.csdn.net/weixin_39373480/article/details/88934146)
+* [Understanding Machine Learning on Point Clouds through PointNet++](https://towardsdatascience.com/understanding-machine-learning-on-point-clouds-through-pointnet-f8f3f2d53cc3)
+* [Deep learning with point clouds](https://www.qwertee.io/blog/deep-learning-with-point-clouds/)
