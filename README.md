@@ -5,33 +5,37 @@ P.S.: notes will be mostly written using my own words and conform the principles
 
 ## Papers
 ### Charles QI, Su HAO, Leo Guibas(Stanford University)
-- PointNet
-- PointNet++
-- F-PointNet
-- FlowNet 3D
-- VoteNet
-- KpConv
-- Volumetric and multi-view CNNs for obj classi on 3D data
-- Render for cnn: viewpoint estimation in images using CNNs trained w. rendered 3D model views
-- GSPN
-- Generating 3D adversarial point clouds
-- PartNet
-- GeoNet
-- Supervised fitting of primitive to 3D point clouds
+
+- [PointNet (CVPR 2017 oral)](https://github.com/charlesq34/pointnet)
+- [PointNet++ (NIPS 2017)](https://github.com/charlesq34/pointnet2)
+- [F-PointNet (CVPR 2018)](https://github.com/charlesq34/frustum-pointnets)
+- [VoteNet (ICCV 2019)](https://github.com/facebookresearch/votenet)
+- [pointnet-autoencoder](https://github.com/charlesq34/pointnet-autoencoder)
+- [FlowNet3D (CVPR 2019)](https://github.com/xingyul/flownet3d)
+- [KpConv (ICCV 2019)](https://github.com/HuguesTHOMAS/KPConv)
+- [Volumetric and multi-view CNNs (CVPR 2016 spotlight)](https://github.com/charlesq34/3dcnn.torch)
+- [Render for cnn (ICCV 2015)](https://github.com/ShapeNet/RenderForCNN)
+- [3D adversarial point clouds (CVPR 2018)](https://github.com/xiangchong1/3d-adv-pc)
+- [PartNet (CVPR 2019)](https://github.com/daerduoCarey/partnet_dataset)
+- [GeoNet (CVPR2018)](https://github.com/yzcjtr/GeoNet)
+- [SPFN (CVPR 2019 Oral)](https://github.com/lingxiaoli94/SPFN)
   
 ### Other
-- PointCNN
-- SPLATNet
-- So-Net
-- DGCNN
-- OctNet
-- 3d-sis
-- 3d-sic
-- scan2cad
-- PointRCNN
-- GSPN
-- Tangent Conv
-- PCN(point completion net)
+- [Relation-CNN (CVPR 2019 Oral & Best paper finalist))](https://github.com/Yochengliu/Relation-Shape-CNN)
+- [superpoint graph (CVPR2018 & CVPR2019)](https://github.com/loicland/superpoint_graph)
+- [PointCNN (NIPS2018)](https://github.com/yangyanli/PointCNN)
+- [SPLATNet (CVPR2018)](https://github.com/NVlabs/splatnet)
+- [So-Net (CVPR 2018)](https://github.com/lijx10/SO-Net)
+- [DGCNN (ACM Transactions on Graphics 2019)](https://github.com/WangYueFt/dgcnn)
+- [OctNet (CVPR 2017)](https://github.com/griegler/octnet)
+- [3D Fully Convolutional Network for Vehicle Detection in Point Cloud](https://github.com/yukitsuji/3D_CNN_tensorflow)
+- [PointRCNN (CVPR 2019)](https://github.com/sshaoshuai/PointRCNN)
+- [Scan2CAD (CVPR 2019)](https://github.com/skanti/Scan2CAD)
+- [3D-SIS (CVPR 2019)](https://github.com/Sekunde/3D-SIS)
+- [SGPN (CVPR 2018)](https://github.com/laughtervv/SGPN)
+- [GSPN (CVPR 2019)](https://github.com/ericyi/GSPN)
+- [Tangent Convolutions (CVPR 2018)](https://github.com/tatarchm/tangent_conv)
+- [PCN (3DV 2018 (Oral))](https://github.com/wentaoyuan/pcn)
 
 ### newest classic papers
 
@@ -45,4 +49,4 @@ P.S.: notes will be mostly written using my own words and conform the principles
   - pointnet++
   - votenet
   - pointcnn
-- add links to each paper
+- ~~add links to each paper~~
