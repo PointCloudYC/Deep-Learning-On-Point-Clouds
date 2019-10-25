@@ -33,7 +33,8 @@ There are mainly 3 key modules inclduing max pooling module, conctenation struct
 - architecture;
 ![architecture of pointnet](images/pointnet/architecture-pointnet.png)
   - max pooling;
-  - T-Net;
+  - T-Net;PointNet(vanilla) does not have the ability to be invariant to the rigid tranformation. To overcome this issue, the author use `T-Net` to learn the rotation so that the input(Nx3) and features(Nx64) can be stardardized before performing classi or segmentation task.P.S.: for feature tranformation, it add a regularizer loss so that the learned rotation matrix can be approximated as a orthonormal matrix.
+  ![](images/pointnet/t-net-3.png)
   - concatenation of local and global info;
   - Tensor shape envolvement in 4d format(for verification, you can visualize it in tensorboard); 
   
@@ -239,9 +240,16 @@ On the default graph
 - if preparing your own datasets, remember to use `collect_indoor3d_data.py` to generate npy and `gen_indoor3d_h5.py` to h5 files for your own datasets.
 
 
-## critiques and comments
-
 ## Research questions
+### related works on point clouds
+- 3d CNN;
+- projected images, then apply CNN to classify.
+- hand-crafted features;
+  - normal
+  - intensity;激光雷达的采样的时候一种特性强度信息的获取是激光扫描仪接受装置采集到的回波强度，此强度信息与目标 的表面材质、粗糙度、入射角方向，以及仪器的发射能量，激光波长有关
+  - local density, curvature
+  - linearity; check [Dimensionality based scale selection in 3D lidar point clouds](https://www.researchgate.net/publication/236846179_Dimensionality_based_scale_selection_in_3D_lidar_point_clouds)
+  - vertical feature; check [Weakly supervised segmentation-aided classification of urban scenes from 3d LiDAR point clouds](https://www.int-arch-photogramm-remote-sens-spatial-inf-sci.net/XLII-1-W1/151/2017/)
 
 ### Among all popular geometric data structures, why point cloud data is favored?
 
