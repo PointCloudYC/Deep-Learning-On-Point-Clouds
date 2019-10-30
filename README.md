@@ -6,8 +6,8 @@ P.S.: notes will be mostly written using my own words and conform the principles
 ## Papers
 ### Charles QI, Su HAO, Leo Guibas(Stanford University)
 
-- [PointNet (CVPR 2017 oral)](https://github.com/charlesq34/pointnet)
-- [PointNet++ (NIPS 2017)](https://github.com/charlesq34/pointnet2)
+- [PointNet (CVPR 2017 oral)](https://github.com/charlesq34/pointnet) | [my note](PointNet.md)
+- [PointNet++ (NIPS 2017)](https://github.com/charlesq34/pointnet2) | [my note](PointNet++.md)
 - [F-PointNet (CVPR 2018)](https://github.com/charlesq34/frustum-pointnets)
 - [VoteNet (ICCV 2019)](https://github.com/facebookresearch/votenet)
 - [pointnet-autoencoder](https://github.com/charlesq34/pointnet-autoencoder)
@@ -21,7 +21,7 @@ P.S.: notes will be mostly written using my own words and conform the principles
 - [SPFN (CVPR 2019 Oral)](https://github.com/lingxiaoli94/SPFN)
   
 ### Other
-- [Relation-CNN (CVPR 2019 Oral & Best paper finalist))](https://github.com/Yochengliu/Relation-Shape-CNN)
+- [Relation-CNN (CVPR 2019 Oral & Best paper finalist))](https://github.com/Yochengliu/Relation-Shape-CNN) | [my note](RS-CNN.md)
 - [superpoint graph (CVPR2018 & CVPR2019)](https://github.com/loicland/superpoint_graph)
 - [PointCNN (NIPS2018)](https://github.com/yangyanli/PointCNN)
 - [SPLATNet (CVPR2018)](https://github.com/NVlabs/splatnet)
@@ -34,10 +34,11 @@ P.S.: notes will be mostly written using my own words and conform the principles
 - [3D-SIS (CVPR 2019)](https://github.com/Sekunde/3D-SIS)
 - [SGPN (CVPR 2018)](https://github.com/laughtervv/SGPN)
 - [GSPN (CVPR 2019)](https://github.com/ericyi/GSPN)
+- [VoxelNet (CVPR 2017)](https://github.com/tsinghua-rll/VoxelNet-tensorflow)
 - [Tangent Convolutions (CVPR 2018)](https://github.com/tatarchm/tangent_conv)
 - [PCN (3DV 2018 (Oral))](https://github.com/wentaoyuan/pcn)
 - [3DMatch (CVPR 2017 Oral)](https://github.com/andyzeng/3dmatch-toolbox)
-
+- [3D-point-cloud-generation (AAAI 2018 oral)](https://github.com/chenhsuanlin/3D-point-cloud-generation)
 ### newest classic papers
 
 4D Spatio-Temporal ConvNets: Minkowski Convolutional Neural Networks, ScanNet No.1 on the leatherboard(26th,sep,19)
