@@ -21,6 +21,7 @@ P.S.: notes will be mostly written using my own words and conform the principles
 - [SPFN (CVPR 2019 Oral)](https://github.com/lingxiaoli94/SPFN)
   
 ### Other
+- [RandLA-Net (CVPR 2020 oral)](https://github.com/QingyongHu/RandLA-Net) | [my note](RandLA-net.md)
 - [Relation-CNN (CVPR 2019 Oral & Best paper finalist))](https://github.com/Yochengliu/Relation-Shape-CNN) | [my note](RS-CNN.md)
 - [superpoint graph (CVPR2018 & CVPR2019)](https://github.com/loicland/superpoint_graph)
 - [PointCNN (NIPS2018)](https://github.com/yangyanli/PointCNN)
