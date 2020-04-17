@@ -2,13 +2,13 @@
 
 # Deep-Learning-On-Point-Clouds
 
-A curated list of **primary sources** involving papers, books, blogs and other sources on the research topic *applying deep learning on point cloud data*. Moreover, I will try to summarize on these primary sources with a note. 
+A curated list of **primary sources** involving papers, books, blogs on the research theme *applying deep learning on point cloud data*. Moreover, I will try to summarize these primary sources with a note. 
 
 For papers, each note will try to summarize the basic background, main proposals, key components of the proposals, architecture, code implementation, methodology part, potential use of the paper and etc. For books, briefly list out which parts are important to the research topic.
 
 ## Papers for Point clouds
 
-### Classification, semantic segmentation and instance segmentation for point clouds
+### classification, semantic segmentation and instance segmentation for point clouds
 
 **1. classification and semantic segmentation**
 **1.1 primary sources**
@@ -28,6 +28,7 @@ For papers, each note will try to summarize the basic background, main proposals
 - [SPLATNet (CVPR2018)](https://github.com/NVlabs/splatnet)
 - [So-Net (CVPR 2018)](https://github.com/lijx10/SO-Net)
 - [OctNet (CVPR 2017)](https://github.com/griegler/octnet)
+- [PU-Net (CVPR 2018)](https://github.com/yulequan/PU-Net)
 - [PointRCNN (CVPR 2019)](https://github.com/sshaoshuai/PointRCNN)
 - [Scan2CAD (CVPR 2019)](https://github.com/skanti/Scan2CAD)
 - [PartNet (CVPR 2019)](https://github.com/daerduoCarey/partnet_dataset)
@@ -52,19 +53,7 @@ For papers, each note will try to summarize the basic background, main proposals
 **2. other sources**
 todo
 
-### generation/synthesis for point clouds
-**1. primary sources**
-- [r-GAN/l-GAN/GMM-AE (ICML 2018)](https://github.com/optas/latent_3d_points)
->Achlioptas, Panos, Olga Diamanti, Ioannis Mitliagkas, and Leonidas Guibas. “Learning Representations and Generative Models for 3D Point Clouds(ICML-2018).” ArXiv:1707.02392 [Cs], June 12, 2018. http://arxiv.org/abs/1707.02392.
-
-- [PointFlow (ICCV 2019 Oral)](https://github.com/stevenygd/PointFlow)
->Yang, Guandao, Xun Huang, Zekun Hao, Ming-Yu Liu, Serge Belongie, and Bharath Hariharan. “PointFlow: 3D Point Cloud Generation with Continuous Normalizing Flows,” June 28, 2019. https://arxiv.org/abs/1906.12320v3.
-
-**2. other sources**
-- [3D adversarial point clouds (CVPR 2018)](https://github.com/xiangchong1/3d-adv-pc)
-- [3D-point-cloud-generation (AAAI 2018 oral)](https://github.com/chenhsuanlin/3D-point-cloud-generation)
-
-### detection and flow anlysis for point clouds
+### detection and flow analysis for point clouds
 **1. detection**
 **1.1 primary sources**
 - [F-PointNet (CVPR 2018)](https://github.com/charlesq34/frustum-pointnets)
@@ -74,10 +63,28 @@ todo
 2.scene flow analysis
 - [FlowNet3D (CVPR 2019)](https://github.com/xingyul/flownet3d)
 
+### generation/synthesis for point clouds
+**1. primary sources**
+- [r-GAN/l-GAN/GMM-AE (ICML 2018)](https://github.com/optas/latent_3d_points)
+>Achlioptas, Panos, Olga Diamanti, Ioannis Mitliagkas, and Leonidas Guibas. “Learning Representations and Generative Models for 3D Point Clouds(ICML-2018).” ArXiv:1707.02392 [Cs], June 12, 2018. http://arxiv.org/abs/1707.02392.
+
+- [PointFlow (ICCV 2019 Oral)](https://github.com/stevenygd/PointFlow)
+>Yang, Guandao, Xun Huang, Zekun Hao, Ming-Yu Liu, Serge Belongie, and Bharath Hariharan. “PointFlow: 3D Point Cloud Generation with Continuous Normalizing Flows,” June 28, 2019. https://arxiv.org/abs/1906.12320v3.
+
+- Learning Efficient Point Cloud Generation for Dense 3D Object Reconstruction – Lin et al. (AAAI 2018 )
+
+**2. other sources**
+- [PointSetGeneration (CVPR 2017)](https://github.com/fanhqme/PointSetGeneration)
+- [3D adversarial point clouds (CVPR 2018)](https://github.com/xiangchong1/3d-adv-pc)
+- [3D-point-cloud-generation (AAAI 2018 oral)](https://github.com/chenhsuanlin/3D-point-cloud-generation)
+
 ### reconstruction and model retrieval for point clouds
 
 **1. reconstruction**
+
 **1.1 primary sources**
+* [3D-point-cloud-generation (AAAI 2018)](https://github.com/chenhsuanlin/3D-point-cloud-generation)
+
 **1.2 other sources**
 
 **2. model retrieval**
@@ -86,44 +93,69 @@ todo
 
 
 ## Papers for images, sequential data
-### review papers
-todo
 
-### classic papers
-todo
+### review papers
+- DL nature Yann Lecun
+- A review of ML
+
+### classic nets
+- Lenet, ImageNet, Googlenet,VGGnet, Restnet
+- xception
+- LSTM, RNN, and some variants
+
+### image semantic segmentation
+- FCN
+- PSPNet
+- Deeplab v3+
+
+### image detection
+- SSD
+- Yolo
+- Fast R-CNN
+- Faster R-CNN
 
 ### other papers
 todo
 
-## Books
-### Deep learning
+## books
+### deep learning and machine learning
 
-- DEEP LEARNING WITH PYTHON, Francis Chollet.
-
->an extremely classic and concise book on deep learning using keras.
-
-- HANDS-ON MACHINE LEARNING WITH SCIKIT-LEARN, KERAS AND TENSORFLOW, 2nd Edition, Aurélien Géron.
-
+- [Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow, 2nd Edition](http://shop.oreilly.com/product/0636920142874.do), Aurélien Géron, Sep, 2019. ⭐️⭐️⭐️⭐️⭐️️
 >a practical DL book with lots of examples and exercises using Scikit-learn, TF 2.x (keras included)
 
-- DEEP LEARNING, Ian Goodfellow.
+- [Deep learning with python](https://www.manning.com/books/deep-learning-with-python), François Chollet, Dec, 2017. ⭐️⭐️⭐️⭐️⭐️
+>an extremely classic and concise book on deep learning using keras.
 
+- [Deep Learning](http://www.deeplearningbook.org/), Ian Goodfellow, etc, 2017 ⭐️⭐️⭐️⭐️⭐️
 >a classical book on DL
 
-- MACHINE LEARNING YEARNING, Andrew Ng.
-  
+- [Machine Learning Yearning](https://www.deeplearning.ai/machine-learning-yearning/), Andrew Ng, 2018. ⭐️⭐️⭐️⭐️
 >a collection of practical machine learning techniques to build yr intelligent system.
 
-### Point clouds
+- [Neural networks and deep learning](http://neuralnetworksanddeeplearning.com/), Michael Nielsen, around 2015. ⭐⭐️⭐️⭐️
+  
+
+### point clouds
 
 - Topographic Laser Ranging and Scanning: Principles and Processing, 2nd Edition: Jie Shan, Charles K. Toth.
 
 - Airborne and Terrestrial Laser Scanning, Vosselman George.
 
-## Todos
+## todos
 
-- notes for each key paper
-  - pointnet
-  - pointnet++
-  - votenet
-  - pointcnn
+### notes for sem. seg.
+
+- ~~pointnet~~
+- ~~pointnet++~~
+- ~~RandLA-Net~~
+- RS-CNN
+- PointCNN
+- KPConv
+
+### brief summary for 2d images
+- classical nets, e.g.: AlexNet
+- nets for img sem. seg.
+- nets for img det.
+
+### notes for det.
+- votenet
