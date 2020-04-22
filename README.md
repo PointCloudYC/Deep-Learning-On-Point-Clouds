@@ -175,6 +175,9 @@ todo
 >a collection of practical machine learning techniques to build yr intelligent system.
 
 - [Neural networks and deep learning](http://neuralnetworksanddeeplearning.com/), Michael Nielsen, around 2015. ⭐⭐️⭐️⭐️
+
+- [An introduction to statistical learning : with applications in R](http://faculty.marshall.usc.edu/gareth-james/ISL/). Gareth James, Daniela Witten, Trevor Hastie, Robert Tibshirani, 2013. ⭐️⭐️⭐️
+
   
 
 ### point clouds
